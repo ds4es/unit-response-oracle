@@ -1,0 +1,1 @@
+Will contain the Python executable files and installed libraries for your virtualenv environment
