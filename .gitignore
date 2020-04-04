@@ -1,0 +1,14 @@
+.cache
+.ipython
+.local
+.env
+.config
+.bash_history
+.ipynb_checkpoints
+__pycache__
+build
+dist
+*.pyc
+env/*
+!env/README.md
+mlruns
