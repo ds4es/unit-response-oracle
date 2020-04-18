@@ -4,13 +4,14 @@ The response time is one of the most important factors for emergency services be
 
 
 ## Objective and thanks
-This project aims to predict the response time of the appliances of an emergency service and will only be made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire (wshuquar - rank 1 on the leaderboard), Antoine Moulin (amoulin 0.3213), [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) (edwige & jjerphan), Wassim Bouaziz & Elliot Vincent (elliot.vincent & wesbz), [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) (Quenting44), [Laurent Deborde](https://github.com/ljmdeb/Pompiers) (Ljmdeb), François Paupier (popszer), Léo Andéol (leoandeol).
+This project aims to predict the response time of the appliances of an emergency service and will only be made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire _(wshuquar - rank 1 on the leaderboard)_, Antoine Moulin _(amoulin)_, [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) _(edwige & jjerphan)_, Wassim Bouaziz & Elliot Vincent _(elliot.vincent & wesbz)_, [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) _(Quenting44)_, [Laurent Deborde](https://github.com/ljmdeb/Pompiers) _(Ljmdeb)_, François Paupier _(popszer)_, Léo Andéol _(leoandeol)_.
 
 Thanks to all of them very much for the work carried out and shared.
 
+## Prerequisites
+
 For details on the project structure please refer to: https://ds4es.org/docs/ds_project_template.html
 
-## Prerequisites
 ### Linux
 For local developement we advice the use of [Anaconda 3.x](https://www.anaconda.com/distribution/) (or [Miniconda 3.x](https://docs.conda.io/en/latest/miniconda.html)) installed under your `/Home/username` directory keeping you far away from unintentional troubles messing up your Python OS depedencies, and `virtualenv` to encapsulate the Python package dependencies relying to this project in its own directory.
 
