@@ -3,6 +3,7 @@
 The response time is one of the most important factors for emergency services because their ability to save lives and rescue people depends on it. A non-optimal choice of an emergency vehicle for a rescue request may lengthen the arrival time of the rescuers and impact the future of the victim. This choice is therefore highly critical for emergency services and directly rely on their ability to predict precisely the arrival time of the different units available.
 
 
+## Objective and thanks
 This project aims to predict the response time of the appliances of an emergency service and will only be made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire (wshuquar - rank 1 on the leaderboard), Antoine Moulin (amoulin 0.3213), [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) (edwige & jjerphan), Wassim Bouaziz & Elliot Vincent (elliot.vincent & wesbz), [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) (Quenting44), [Laurent Deborde](https://github.com/ljmdeb/Pompiers) (Ljmdeb), François Paupier (popszer), Léo Andéol (leoandeol).
 
 Thanks to all of them very much for the work carried out and shared.
