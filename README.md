@@ -1,12 +1,24 @@
-# Emergency services unit response oracle
+# Unit Response Oracle
 
 The response time is one of the most important factors for emergency services because their ability to save lives and rescue people depends on it. A non-optimal choice of an emergency vehicle for a rescue request may lengthen the arrival time of the rescuers and impact the future of the victim. This choice is therefore highly critical for emergency services and directly rely on their ability to predict precisely the arrival time of the different units available.
 
 
-## Objective and thanks
+## Objective and Thanks
 This project aims to predict the response time of the appliances of an emergency service and will only be made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire _(wshuquar - rank 1 on the leaderboard)_, Antoine Moulin _(amoulin)_, [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) _(edwige & jjerphan)_, Wassim Bouaziz & Elliot Vincent _(elliot.vincent & wesbz)_, [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) _(Quenting44)_, [Laurent Deborde](https://github.com/ljmdeb/Pompiers) _(Ljmdeb)_, François Paupier _(popszer)_, Léo Andéol _(leoandeol)_.
 
 Thanks to all of them very much for the work carried out and shared.
+
+
+## Deploy a Machine Learning Model
+
+* [Deploying Machine Learning Models – pt. 3: gRPC and TensorFlow Serving](https://rubikscode.net/2020/02/24/deploying-machine-learning-models-pt-3-grpc-and-tensorflow-serving/)
+* [How to deploy Machine Learning models with TensorFlow. Part 1 — make your model ready for serving](https://towardsdatascience.com/how-to-deploy-machine-learning-models-with-tensorflow-part-1-make-your-model-ready-for-serving-776a14ec3198)
+* [Turning Machine Learning Models into APIs in Python](https://www.datacamp.com/community/tutorials/machine-learning-models-api-python)
+* [Deploy Your Machine Learning Model as a REST API](https://towardsdatascience.com/deploy-your-machine-learning-model-as-a-rest-api-4fe96bf8ddcc)
+* [Creating REST API for TensorFlow models](https://becominghuman.ai/creating-restful-api-to-tensorflow-models-c5c57b692c10)
+
+## Deploy Machine Learning Models 
+
 
 ## Prerequisites
 
@@ -34,7 +46,7 @@ which pip
 pip install virtualenv
 ```
 
-## Initial setup
+## Initial Setup
 ```
 git clone https://github.com/ds4es/esuro
 cd ./esuro
@@ -56,7 +68,7 @@ Download the raw data
 make raw-data
 ```
 
-## Track, manage and share models with MLFlow and Neptune
+## Track, Manage and Share Models with MLFlow and Neptune
 `neptune-mflow` integrates `mlflow` with `Neptune` to let you get the best of both worlds: tracking and reproducibility of `mlflow` with organization and collaboration of `Neptune`.
 
 #### Install MLFlow and Neptune 
