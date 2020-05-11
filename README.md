@@ -8,6 +8,7 @@ This project aims to predict the response time of the appliances of an emergency
 
 Thanks to all of them very much for the work carried out and shared.
 
+![Work in progress](https://ds4es.org/assets/img/work-in-progress.png)
 
 ## Deploy a Machine Learning Model
 
@@ -28,7 +29,7 @@ For details on the project structure please refer to: https://ds4es.org/docs/ds_
 For local developement we advice the use of [Anaconda 3.x](https://www.anaconda.com/distribution/) (or [Miniconda 3.x](https://docs.conda.io/en/latest/miniconda.html)) installed under your `/Home/username` directory keeping you far away from unintentional troubles messing up your Python OS depedencies, and `virtualenv` to encapsulate the Python package dependencies relying to this project in its own directory.
 
 Anaconda install
-```
+```bash
 sudo dnf install wget # replace the dnf keyword by the one suiting your Linux distribution
 cd ~/Downloads 
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -37,7 +38,7 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 ```
 
 Install `virtualenv`
-```
+```bash
 conda update conda
 conda update python
 conda install pip
@@ -47,24 +48,24 @@ pip install virtualenv
 ```
 
 ## Initial Setup
-```
-git clone https://github.com/ds4es/esuro
-cd ./esuro
+```bash
+git clone https://github.com/ds4es/unit-response-oracle
+cd ./unit-response-oracle
 ```
 Create en isolated Python environment in ./env
-```
+```bash
 virtualenv env
 ```
 Enable the virtual python environment
-```
+```bash
 source ./env/bin/activate
 ```
 Setup a local environment
-```
+```bash
 pip install -r requirements.txt
 ```
 Download the raw data
-```
+```bash
 make raw-data
 ```
 
@@ -91,13 +92,13 @@ export NEPTUNE_API_TOKEN="your_long_api_token"
 ```
 
 Reload `~/.bashrc`
-```
+```bash
 source ~/.bashrc
 ```
 
 ### Usage
 
-```
+```bash
 mkdir project_repo
 cd project_repo
 vi example.py
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     log_artifact("output.txt")
 ```
 Run your code
-```
+```bash
 cd project_repo
 python example.py
 ```
@@ -133,7 +134,7 @@ By now the tracking API should have write data into files into your local ./mlru
 
 #### Monitor your experiments with MLFlow locally
 To launch the MLFlow web interface execute
-```
+```bash
 cd project_repo
 mlflow ui
 ```
