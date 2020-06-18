@@ -4,70 +4,110 @@ The response time is one of the most important factors for emergency services be
 
 
 ## Objective and Thanks
-This project aims to predict the response time of the appliances of an emergency service and will only be made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire _(wshuquar - rank 1 on the leaderboard)_, Antoine Moulin _(amoulin)_, [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) _(edwige & jjerphan)_, Wassim Bouaziz & Elliot Vincent _(elliot.vincent & wesbz)_, [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) _(Quenting44)_, [Laurent Deborde](https://github.com/ljmdeb/Pompiers) _(Ljmdeb)_, François Paupier _(popszer)_, Léo Andéol _(leoandeol)_.
+This project aims to predict the response time of the appliances of an emergency service and is ONLY made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire _(wshuquar - rank 2 on the leaderboard)_, Antoine Moulin _(amoulin)_, [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) _(edwige & jjerphan)_, Wassim Bouaziz & Elliot Vincent _(elliot.vincent & wesbz)_, [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) _(Quenting44)_, [Laurent Deborde](https://github.com/ljmdeb/Pompiers) _(Ljmdeb)_, François Paupier _(popszer)_, Léo Andéol _(leoandeol)_.
 
 Thanks to all of them very much for the work carried out and shared.
-
-![Work in progress](https://ds4es.org/assets/img/work-in-progress.png)
-
-## Deploy a Machine Learning Model
-
-* [Deploying Machine Learning Models – pt. 3: gRPC and TensorFlow Serving](https://rubikscode.net/2020/02/24/deploying-machine-learning-models-pt-3-grpc-and-tensorflow-serving/)
-* [How to deploy Machine Learning models with TensorFlow. Part 1 — make your model ready for serving](https://towardsdatascience.com/how-to-deploy-machine-learning-models-with-tensorflow-part-1-make-your-model-ready-for-serving-776a14ec3198)
-* [Turning Machine Learning Models into APIs in Python](https://www.datacamp.com/community/tutorials/machine-learning-models-api-python)
-* [Deploy Your Machine Learning Model as a REST API](https://towardsdatascience.com/deploy-your-machine-learning-model-as-a-rest-api-4fe96bf8ddcc)
-* [Creating REST API for TensorFlow models](https://becominghuman.ai/creating-restful-api-to-tensorflow-models-c5c57b692c10)
-
-## Deploy Machine Learning Models 
 
 
 ## Prerequisites
 
-For details on the project structure please refer to: https://ds4es.org/docs/ds_project_template.html
-
-### Linux
-For local developement we advice the use of [Anaconda 3.x](https://www.anaconda.com/distribution/) (or [Miniconda 3.x](https://docs.conda.io/en/latest/miniconda.html)) installed under your `/Home/username` directory keeping you far away from unintentional troubles messing up your Python OS depedencies, and `virtualenv` to encapsulate the Python package dependencies relying to this project in its own directory.
-
-Anaconda install
-```bash
-sudo dnf install wget # replace the dnf keyword by the one suiting your Linux distribution
-cd ~/Downloads 
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh
+Download the repo
 ```
-
-Install `virtualenv`
-```bash
-conda update conda
-conda update python
-conda install pip
-# Check that pip is relying to the right Anaconda installation
-which pip 
-pip install virtualenv
-```
-
-## Initial Setup
-```bash
 git clone https://github.com/ds4es/unit-response-oracle
 cd ./unit-response-oracle
 ```
-Create en isolated Python environment in ./env
-```bash
-virtualenv env
-```
-Enable the virtual python environment
-```bash
-source ./env/bin/activate
-```
-Setup a local environment
+Load your Python environment (eg. `conda activate my_env`).
+
+Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-Download the raw data
-```bash
-make raw-data
+
+Add the root project path to your `PYTHONPATH` variable:
 ```
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+```
+
+## Commands
+
+* `python src/models/train_linear.py`: to train an intermediate linear model
+* `python src/models/train_lgbm.py`: to train the global model
+* `python src/models/predict.py`: to make a prediction
+* `python src/utils/prediction_evaluation.py`: to evaluate a prediction
+* `python src/train_predict_evaluate.py`: to train a model, predict and evaluate the result of the prediction
+
+To remove assert and __debug__-dependent statements add the `-O` flag when running one of those scripts, e.g.:
+```
+python -O src/train_predict_evaluate.py
+```
+
+To start the jupyter notebook in the dedicated folder
+```
+jupyter notebook --notebook-dir=notebooks
+```
+
+#### Test the consumption of the model through an API
+
+In a first terminal, start the API:
+```
+python api/api_for_paris_fire_brigade_data.py
+```
+
+In a second terminal, launch a random query:
+```
+python api/make_me_a_query_for_paris_fire_brigade_2018_data.py
+```
+
+## Input data description (for the Paris Fire Brigade dataset under the `data/processed/paris_fire_brigade_2018` folder)
+
+* **[ID]** `emergency vehicle selection`: identifier of the selection instance of an emergency vehicle for an intervention
+* Intervention
+  * `intervention`: identifier of the intervention
+  * `alert reason category` (category): alert reason category
+  * `alert reason` (category): alert reason
+* Address
+  * `intervention on public roads` (boolean): 1 when it concerns an intervention on public roads, 0 otherwise
+  * `floor` (int): floor of the intervention
+  * `location of the event` (category): qualifies the location of the emergency request, for example: entrance hall, boiler room, motorway, etc.
+  * `longitude intervention`: (float): approximate longitude of the intervention address
+  * `latitude intervention` (float): approximate latitude of the intervention address
+* Emergency vehicle 
+  * `emergency vehicle`: identifier of the emergency vehicle 
+  * `emergency vehicle type` (category): type of the emergency vehicle
+  * `rescue center` (category): identifier of the rescue center to which belong the vehicle (parking spot of the emergency vehicle)
+* `selection time` (int): selection time of the emergency vehicle (seconds since the 1 January 1970)
+* `delta status preceding selection-selection` (int): number of seconds before the vehicle was selected when its previous status was entered
+* `departed from its rescue center` (boolean) : 1 when the vehicle departed from its rescue center (emergency vehicle parking spot), 0 otherwise
+* `longitude before departure` (float): longitude of the position of the vehicle preceding his departure
+* `latitude before departure` (float): latitude of the position of the vehicle preceding his departure
+* `delta position gps previous departure-departure` (int): number of seconds before the selection of the vehicle where its GPS position was recorded (when not parked at its emergency center)
+* `routing engine estimated distance` (float): distance (in meters) calculated by the routing engine route service
+* `routing engine estimated duration` (float): transit delay (in seconds) calculated by the routing engine route service
+* `routing engine estimated distance from last observed GPS position` (float): distance (in meters) calculated by the routing engine route service from last observed GPS position
+* `routing engine estimated duration from last observed GPS position` (float): transit delay (in seconds) calculated by the routing engine route service from last observed GPS position
+* `time elapsed between selection and last observed GPS position` (float): in seconds
+* `updated routing engine estimated duration` (float): time elapsed (in seconds) between selection and last observed GPS position + routing engine estimated duration from last observed GPS position
+* `time day` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24)}{3600*24}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+* `time week` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24*7)}{3600*24*7}" title="Number of seconds in a week" />
+* `time year` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24*7*365)}{3600*24*7*365}" title="Number of seconds in a year" />
+* `departure center` (int): Departure parking place
+* `GPS tracks count` (int): Number of GPS traces observed
+* `estimated speed` (float): Estimated speed (in meters/second) due to last observed position <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'routing engine estimated distance'}-\text{'routing engine estimated distance from last observed GPS position'}}{\text{'time elapsed between selection and last observed GPS position'}}&space;\text{meters/second}" />
+* `estimated duration from speed` (float): Estimated `delta selection-presentation` (in seconds) based on `estimated speed`<img src="https://latex.codecogs.com/svg.latex?\text{'time elapsed between selection and last observed GPS position'}+\frac{\text{routing engine estimated distance from last observed GPS position'}}{\text{'estimated speed'}}&space;\text{seconds}" />
+* `estimated time factor` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'routing engine estimated duration'}-\text{routing engine estimated distance from last observed GPS position'}}{\text{'time elapsed between selection and last observed GPS position'}}" />
+* `estimated duration from time`(float): Estimated `delta selection-presentation` (in seconds) based on `estimated time factor`<img src="https://latex.codecogs.com/svg.latex?\text{'time elapsed between selection and last observed GPS position'}+\frac{\text{routing engine estimated duration from last observed GPS position'}}{\text{'estimated time factor'}}&space;\text{seconds}" />
+* `intervention count` (int): Number of units sent for this intervention
+* `rescaled longitude before departure`:
+* `rescaled longitude intervention`:
+* `rescaled latitude before departure`:
+* `rescaled latitude intervention`:
+
+
+Backup your work in the parent folder in a ZIP file without data, models...
+```
+zip -r ../unit-response-oracle_$(date +%Y%m%d_%H%M%S).zip . -x "*.csv" "*.pkl" "*__pycache__*" "*.git*" "*.ipynb*" "*mlruns*" ".tar"
+```
+
 
 ## Track, Manage and Share Models with MLFlow and Neptune
 `neptune-mflow` integrates `mlflow` with `Neptune` to let you get the best of both worlds: tracking and reproducibility of `mlflow` with organization and collaboration of `Neptune`.
@@ -150,10 +190,3 @@ cd project_repo
 neptune mlflow --project USER_NAME/PROJECT_NAME
 ```
 
-## References
-* [Complete Data Science Project Template with Mlflow for Non-Dummies](https://towardsdatascience.com/complete-data-science-project-template-with-mlflow-for-non-dummies-d082165559eb)
-* [MLflow Documentation](https://www.mlflow.org/docs/latest/index.html)
-* [Manage your Data Science project structure in early stage](https://towardsdatascience.com/manage-your-data-science-project-structure-in-early-stage-95f91d4d0600)
-* [GitHub repo of an example data science project using Mlflow](https://gitlab.com/jan-teichmann/ml-flow-ds-project)
-* [A logical, reasonably standardized, but flexible project structure for doing and sharing data science work](https://drivendata.github.io/cookiecutter-data-science/#data-is-immutable) & [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/)
-* [How to Structure a Python-Based Data Science Project](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
