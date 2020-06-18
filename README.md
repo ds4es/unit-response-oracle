@@ -8,8 +8,22 @@ This project aims to predict the response time of the appliances of an emergency
 
 Thanks to all of them very much for the work carried out and shared.
 
+## Performance
 
-## Prerequisites
+With the current stage of the model and the Paris Fire Brigade data, we reach the following performances:
+
+| Metric                                      | Score                     |
+| ------------------------------------------- |:-------------------------:|
+| delta selection-presentation R² score       | 0.3519259513911971        |
+| RMSLE (Root mean squared logarithmic error) | 0.24096136564976547       |
+| Typical error                               | 46.85853018331147 seconds |
+| Mean error                                  | 79.88422875046562 seconds |
+
+For instance we have only used the fantastic work of Wenqi Shu-Quartier-dit-Maire but we are eager to also exploit the work of the other participants quoted just above resealing wonderful ideas.
+
+## Usage
+
+### Prerequisites
 
 Download the repo
 ```
@@ -28,7 +42,7 @@ Add the root project path to your `PYTHONPATH` variable:
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 ```
 
-## Commands
+### Commands
 
 * `python src/models/train_linear.py`: to train an intermediate linear model
 * `python src/models/train_lgbm.py`: to train the global model
@@ -58,7 +72,7 @@ In a second terminal, launch a random query:
 python api/make_me_a_query_for_paris_fire_brigade_2018_data.py
 ```
 
-## Input data description (for the Paris Fire Brigade dataset under the `data/processed/paris_fire_brigade_2018` folder)
+### Input data description (for the Paris Fire Brigade dataset under the `data/processed/paris_fire_brigade_2018` folder)
 
 * **[ID]** `emergency vehicle selection`: identifier of the selection instance of an emergency vehicle for an intervention
 * Intervention
