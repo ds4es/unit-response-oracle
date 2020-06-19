@@ -43,11 +43,12 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 ### Commands
 
+* `python src/data/paris_fire_brigade_raw_data_to_processed.py`: to turn Paris Fire Brigade data challenge raw data into preprocessed data
 * `python src/models/train_linear.py`: to train an intermediate linear model
 * `python src/models/train_lgbm.py`: to train the global model
 * `python src/models/predict.py`: to make a prediction
-* `python src/utils/prediction_evaluation.py`: to evaluate a prediction
-* `python src/train_predict_evaluate.py`: to train a model, predict and evaluate the result of the prediction
+* `python src/utils/prediction_evaluation.py`: to evaluate a prediction *(the default execution will need a `raw/paris_fire_brigade_2018/y_test.zip` file)*
+* `python src/train_predict_evaluate.py`: to train a model, predict and evaluate the result of the prediction *(the default execution will need a `raw/paris_fire_brigade_2018/y_test.zip` file)*
 
 To remove assert and __debug__-dependent statements add the `-O` flag when running one of those scripts, e.g.:
 ```
@@ -101,7 +102,7 @@ python api/make_me_a_query_for_paris_fire_brigade_2018_data.py
 * `routing engine estimated duration from last observed GPS position` (float): transit delay (in seconds) calculated by the routing engine route service from last observed GPS position
 * `time elapsed between selection and last observed GPS position` (float): in seconds
 * `updated routing engine estimated duration` (float): time elapsed (in seconds) between selection and last observed GPS position + routing engine estimated duration from last observed GPS position
-* `time day` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24)}{3600*24}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+* `time day` (float): <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\text{'selection&space;time'}\mod(3600*24)}{3600*24}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\text{'selection&space;time'}\mod(3600*24)}{3600*24}" title="\frac{\text{'selection time'}\mod(3600*24)}{3600*24}" /></a>
 * `time week` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24*7)}{3600*24*7}" title="Number of seconds in a week" />
 * `time year` (float): <img src="https://latex.codecogs.com/svg.latex?\frac{\text{'selection time'}\mod(3600*24*7*365)}{3600*24*7*365}" title="Number of seconds in a year" />
 * `departure center` (int): Departure parking place
