@@ -2,7 +2,6 @@
 
 The response time is one of the most important factors for emergency services because their ability to save lives and rescue people depends on it. A non-optimal choice of an emergency vehicle for a rescue request may lengthen the arrival time of the rescuers and impact the future of the victim. This choice is therefore highly critical for emergency services and directly rely on their ability to predict precisely the arrival time of the different units available.
 
-
 ## Objective and Thanks
 This project aims to predict the response time of the appliances of an emergency service and is ONLY made possible through the code sharing from Wenqi Shu-Quartier-dit-Maire _(wshuquar - rank 2 on the leaderboard)_, Antoine Moulin _(amoulin)_, [Julien Jerphanion & Edwige Cyffers](https://gitlab.com/jjerphan/challenge-data-paris-fire-brigade) _(edwige & jjerphan)_, Wassim Bouaziz & Elliot Vincent _(elliot.vincent & wesbz)_, [Quentin Gallouedec](https://github.com/quenting44/predicting_response_times) _(Quenting44)_, [Laurent Deborde](https://github.com/ljmdeb/Pompiers) _(Ljmdeb)_, François Paupier _(popszer)_, Léo Andéol _(leoandeol)_.
 
@@ -14,10 +13,10 @@ With the current stage of the model and the Paris Fire Brigade data, we reach th
 
 | Metric                                      | Score                     |
 | ------------------------------------------- |:-------------------------:|
-| delta selection-presentation R² score       | 0.3519259513911971        |
-| RMSLE (Root mean squared logarithmic error) | 0.24096136564976547       |
-| Typical error                               | 46.85853018331147 seconds |
-| Mean error                                  | 79.88422875046562 seconds |
+| Delta selection-presentation R² score       | 0.3519                    |
+| RMSLE (Root mean squared logarithmic error) | 0.2409                    |
+| Median error                                | 46.8585 seconds           |
+| Mean error                                  | 79.8842 seconds           |
 
 For instance we have only used the fantastic work of Wenqi Shu-Quartier-dit-Maire but we are eager to also exploit the work of the other participants quoted just above resealing wonderful ideas.
 
@@ -54,6 +53,7 @@ To remove assert and __debug__-dependent statements add the `-O` flag when runni
 ```
 python -O src/train_predict_evaluate.py
 ```
+*NB: Take a look at the src/config.py constant variables*
 
 To start the jupyter notebook in the dedicated folder
 ```
@@ -204,3 +204,4 @@ cd project_repo
 neptune mlflow --project USER_NAME/PROJECT_NAME
 ```
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" async></script>

@@ -34,7 +34,7 @@ PREDICTED_DATA = "data/predicted/"
 MODELS_DIR = 'models/'
 
 # For developement purpose
-DEV = True 
+DEV = False 
 NUMBER_OF_ROWS_USED_FOR_DEV = 1000 # X_train number of rows used in training phase if DEV = True
 USE_PARAMETERS_SUBSET_FOR_ROBUSTNESS_TEST = False # Set it to True to check if the training and prediction could still work with a random subset of input parameters 
 

@@ -48,6 +48,7 @@ if __name__ == '__main__':
 		lgbm_model_file = sys.argv[6]
 		y_predicted_file = sys.argv[7]
 	else:
+		# Default input
 		x_train_file = X_TRAIN_PREPROCESSED_FILE
 		y_train_file = Y_TRAIN_FILE
 		x_test_file = X_TEST_PREPROCESSED_FILE

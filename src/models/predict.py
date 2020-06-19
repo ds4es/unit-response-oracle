@@ -256,6 +256,7 @@ if __name__ == '__main__':
 		lgbm_model_file = sys.argv[3]
 		y_predicted_file = sys.argv[4]
 	else:
+		# Default input
 		x_test_file = X_TEST_PREPROCESSED_FILE
 		linear_model_file = LINEAR_MODEL_FILE
 		if WITH_CROSS_VALIDATION == True:

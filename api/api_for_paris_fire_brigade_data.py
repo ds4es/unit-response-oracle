@@ -1,7 +1,6 @@
 """Launch an example API (under http://127.0.0.1:5000/api) to consume the 
 predictive model to predict units response times
 
-
 Execution
 ---------
     # Load your Python environment

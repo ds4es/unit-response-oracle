@@ -75,6 +75,7 @@ if __name__ == '__main__':
 		y_train_file = sys.argv[2]
 		linear_model_file = sys.argv[3]
 	else:
+		# Default input
 		x_train_file = X_TRAIN_PREPROCESSED_FILE
 		y_train_file = Y_TRAIN_FILE
 		linear_model_file = LINEAR_MODEL_FILE
