@@ -165,16 +165,20 @@ if __name__ == '__main__':
 	msg = 'Before sending the request should we display the response under a table format?'
 	shall = input("%s (y/N) " % msg).lower() == 'y'
 
-	print(strftime('%H:%M:%S'),"- Sending the request...")
+	print("\n",strftime('%H:%M:%S'),"- Sending the request...")
 	print("API response:")
 	start_time = time()
-	os.system(command)
-	"""
-	import requests
-	url = 'http://127.0.0.1:5000/api'
-	headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-	payload = '{"intervention": '+str(intervention_infos_json.to_list()[0])+', "units":['+','.join(units_json)+']}'
-	r = requests.post(url, data=payload, headers=headers)
-	print(r.text)
-	"""
+	result = os.popen(command).read()
+	results = result.split("\n")
+
+	output = pd.DataFrame()
+	for row in results[:-1]:
+	    output = output.append(json.loads(row), ignore_index=True)
+
+	for col in list(output):
+	    output[col] = output[col].astype(int)
+	    
+	output.set_index('emergency vehicle selection', inplace=True)
+	output = output[['delta selection-departure', 'delta departure-presentation', 'delta selection-presentation']]
+	print(output.to_string())
 	print("Response received in", utils.time_me(time() - start_time), "\n")

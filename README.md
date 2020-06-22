@@ -61,6 +61,13 @@ To start the jupyter notebook in the dedicated folder
 jupyter notebook --notebook-dir=notebooks
 ```
 
+And start your notebook with:
+```
+import os
+os.chdir('..')
+print(os.getcwd(), "set as current working directory")
+```
+
 #### Test the consumption of the model through an API
 
 In a first terminal, start the API:
